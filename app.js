@@ -17,6 +17,8 @@ app.set(express.static('public'));
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/dev_blog', {useNewUrlParser: true});
 
+const Schema = mongoose.Schema;
+
 let blogSchema = new mongoose.Schema({
     title: String,
     image: String,
@@ -25,6 +27,31 @@ let blogSchema = new mongoose.Schema({
 });
 
 const Blog = mongoose.model('Blog', blogSchema);
+
+// Blog.create({
+//     title: "Test Blog",
+//     image: "https://images.pexels.com/photos/574070/pexels-photo-574070.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+//     body: "This is a test blog, just want make sure that everythings works... :)"
+// });
+
+// RESTFUL ROUTES
+
+app.get('/', (req, res) => {
+    // res.redirect('/blogs');
+    re.send('This is main page');
+});
+
+app.get('/blogs', (req, res) => {
+
+    Blog.find({}, (error, blogs) => {
+        if(error) {
+            console.log(error);
+        } else {
+            res.render('index', {blogs: blogs});
+        }
+    });
+
+});
 
 
 // setup port for listening
