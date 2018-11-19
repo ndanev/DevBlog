@@ -17,10 +17,14 @@ app.set(express.static('public'));
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/dev_blog', {useNewUrlParser: true});
 
-//title
-//image
-//body
-//created
+let blogSchema = new mongoose.Schema({
+    title: String,
+    image: String,
+    body: String,
+    created: {type: Date, default: Date.now} // --> current date
+});
+
+const Blog = mongoose.model('Blog', blogSchema);
 
 
 // setup port for listening
