@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 // setup static files
-app.set(express.static('public'));
+app.use(express.static(__dirname + '/public'));
 
 // setup mongoose
 const mongoose = require('mongoose');
@@ -38,7 +38,7 @@ const Blog = mongoose.model('Blog', blogSchema);
 
 app.get('/', (req, res) => {
     // res.redirect('/blogs');
-    re.send('This is main page');
+    res.send('This is main page');
 });
 
 app.get('/blogs', (req, res) => {
