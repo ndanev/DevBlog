@@ -5,7 +5,9 @@
     <img class="img-thumbnail img-fluid" src="<%= blog.image %>">
     <p><%- blog.body %></p>
     <span><%= blog.created.toDateString() %></span>
-
+    <div class="text-center">
+        <a class="ui green basic button" href="/blogs/<%= blog._id %>/edit">Edit</a>
+    </div>
 </div>
 
 <% include partials/footer %>

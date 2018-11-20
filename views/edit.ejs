@@ -1,0 +1,15 @@
+<% include partials/header %>
+
+<div class="container">
+    <div class="row">
+        <h1>Edit <%= blog.title %> Blog</h1>
+        <form action="/blogs/<%= blog._id %>?_method=PUT" method="POST" class="form-control"> <!-- form use just POST and GET method -->
+            <br>
+            <input class="form-control" type="text" value="<%= blog.title %>" name="title" ><br>
+            <input class="form-control" type="text" value="<%= blog.image %>" name="image" ><br>
+            <textarea class="form-control"  name="body" ><%= blog.body %></textarea><br>
+            <input class="ui green basic button" type="submit" value="Submit"><br>
+            <br>
+        </form>
+    </div>
+</div>

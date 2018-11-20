@@ -13,6 +13,10 @@ app.set('view engine', 'ejs');
 // setup static files
 app.use(express.static(__dirname + '/public'));
 
+// used for PUT and DELETE request
+const methodOverride = require('method-override');
+app.use(methodOverride('_method'));
+
 // setup mongoose
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/dev_blog', {useNewUrlParser: true});
@@ -27,12 +31,6 @@ let blogSchema = new mongoose.Schema({
 });
 
 const Blog = mongoose.model('Blog', blogSchema);
-
-// Blog.create({
-//     title: "Test Blog",
-//     image: "https://images.pexels.com/photos/574070/pexels-photo-574070.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-//     body: "This is a test blog, just want make sure that everythings works... :)"
-// });
 
 // RESTFUL ROUTES
 
@@ -83,6 +81,35 @@ app.get('/blogs/:id', (req, res) => {
             res.render('show', {blog: foundBlog});
         }
     });
+});
+
+// edit route
+app.get('/blogs/:id/edit', (req, res) => {
+    Blog.findById(req.params.id, (error, foundBlog) => {
+        if(error) {
+            res.redirect('/blogs');
+        } else {
+            res.render('edit', {blog: foundBlog});
+        }
+    });
+
+});
+
+// update route
+app.put('/blogs/:id', (req, res) => {
+    var updateTitle = req.body.title;
+    var updateImage = req.body.image;
+    var updateBody = req.body.body;
+    var updateData = {title : updateTitle, image: updateImage, body: updateBody};
+    Blog.findByIdAndUpdate(req.params.id, updateData, (error, updatedBlog) => {
+        if(error) {
+            console.log(error);
+            res.redirect('/blogs');
+        } else {
+            res.redirect('/blogs/' + req.params.id);
+        }
+    });
+
 });
 
 
