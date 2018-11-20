@@ -21,3 +21,21 @@ img {
 #delete {
     display: inline;
 }
+
+#landing-img {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+
+    min-width: 100%;
+    min-height: 100%;
+
+    z-index: -1;
+    
+    background: url('https://d3irk3g7luh32r.cloudfront.net/wp-content/uploads/sites/5/2017/12/20170301155447.jpg') no-repeat;
+    background-size: cover;
+}
+

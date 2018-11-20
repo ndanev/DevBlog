@@ -36,7 +36,7 @@ const Blog = mongoose.model('Blog', blogSchema);
 
 app.get('/', (req, res) => {
     // res.redirect('/blogs');
-    res.send('This is main page');
+    res.render('landing');
 });
 
 app.get('/blogs', (req, res) => {
