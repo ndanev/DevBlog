@@ -53,6 +53,38 @@ app.get('/blogs', (req, res) => {
 
 });
 
+// Route New
+app.get('/blogs/new', (req, res) => {
+    res.render('new');
+});
+
+// Create Blog
+app.post('/blogs', (req, res) => {
+    var title = req.body.title;
+    var image = req.body.image;
+    var body = req.body.body;
+    var newBlog = {title: title, image: image, body: body};
+    Blog.create(newBlog, (error, newlyCreated) => {
+        if(error) {
+            res.render('new');
+        } else {
+            res.redirect('/blogs');
+        }
+    });
+});
+
+// show info about one blog post
+app.get('/blogs/:id', (req, res) => {
+    // find a blog provided by ID
+    Blog.findById(req.params.id, (error, foundBlog) => {
+        if(error) {
+            console.log(error);
+        } else {
+            res.render('show', {blog: foundBlog});
+        }
+    });
+});
+
 
 // setup port for listening
 app.listen(4000, () => {

@@ -1,0 +1,16 @@
+<% include partials/header %>
+
+<div class="container">
+    <div class="row">
+        <h1>Create A New Blog</h1>
+        <form action="/blogs" method="POST" class="form-control">
+            <br>
+            <input class="form-control" type="text" placeholder="title" name="title" required><br>
+            <br>
+            <input class="form-control" type="text" placeholder="image-URL" name="image" required><br>
+            <br>
+            <textarea class="form-control"  placeholder="description" name="body" required></textarea><br>
+            <input class="ui purple basic button" type="submit" value="Add New Blog">
+        </form>
+    </div>
+</div>
