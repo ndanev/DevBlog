@@ -8,6 +8,9 @@
     <div class="text-center">
         <a class="ui green basic button" href="/blogs/<%= blog._id %>/edit">Edit</a>
     </div>
+    <form action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+        <button class="ui red basic button">DELETE</button>
+    </form>
 </div>
 
 <% include partials/footer %>
