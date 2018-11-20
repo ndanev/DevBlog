@@ -4,6 +4,10 @@ body{
     /* background-color: #f3f3f3; */
 }
 
+* {
+    font-family: 'Lato', 'sans-serif';
+}
+
 i.fa.fa-lightbulb-o {
     margin-right: 10px;
     font-size: 20px;
@@ -11,5 +15,9 @@ i.fa.fa-lightbulb-o {
 
 img {
     width: 238px;
-    height:300px;
+    height:350px;
+}
+
+#delete {
+    display: inline;
 }
